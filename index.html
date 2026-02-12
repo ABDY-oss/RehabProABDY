@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RehabPro - Главная</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1>RehabPro</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="active"><i class="fas fa-home"></i> Главная</a>
+                    <a href="exercises.html"><i class="fas fa-dumbbell"></i> Упражнения</a>
+                    <a href="nutrition.html"><i class="fas fa-apple-alt"></i> Питание</a>
+                    <a href="tracker.html"><i class="fas fa-chart-line"></i> Трекер</a>
+                    <a href="login.html" id="login-btn"><i class="fas fa-user"></i> Войти</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>Ваш путь к восстановлению начинается здесь</h2>
+                    <p>Персонализированная программа реабилитации с учетом ваших потребностей</p>
+                    <a href="exercises.html" class="btn-primary">
+                        <i class="fas fa-play-circle"></i> Начать реабилитацию
+                    </a>
+                </div>
+                <div class="hero-image">
+                    <img src="sport.png" alt="Реабилитация">
+                </div>
+            </section>
+
+            <section class="features">
+                <h2>Почему выбирают RehabPro?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-user-md"></i>
+                        <h3>Профессиональный подход</h3>
+                        <p>Упражнения разработаны специалистами по реабилитации</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Отслеживание прогресса</h3>
+                        <p>Мониторинг вашего восстановления день за днем</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-utensils"></i>
+                        <h3>Сбалансированное питание</h3>
+                        <p>Рекомендации по питанию для быстрого восстановления</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Удобный доступ</h3>
+                        <p>Занимайтесь в любое время и в любом месте</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="quick-links">
+                <h2>Быстрый доступ</h2>
+                <div class="links-grid">
+                    <a href="exercises.html" class="quick-link-card">
+                        <i class="fas fa-running"></i>
+                        <span>Упражнения</span>
+                    </a>
+                    <a href="nutrition.html" class="quick-link-card">
+                        <i class="fas fa-carrot"></i>
+                        <span>Питание</span>
+                    </a>
+                    <a href="tracker.html" class="quick-link-card">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Трекер</span>
+                    </a>
+                    <a href="login.html" class="quick-link-card">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Мой аккаунт</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="about">
+                <h2>О проекте RehabPro</h2>
+                <p>RehabPro - это инновационная платформа для реабилитации, которая помогает пациентам восстановиться после травм и операций. Наша цель - сделать процесс восстановления более доступным, понятным и эффективным.</p>
+                <p>Мы используем научно обоснованные методики и персонализированный подход к каждому пользователю.</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2026 RehabPro. Все права защищены.</p>
+            <p>Консультация с врачом обязательна перед началом любой программы реабилитации</p>
+        </footer>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        // Проверка авторизации
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const loginBtn = document.getElementById('login-btn');
+            
+            if (user) {
+                loginBtn.innerHTML = `<i class="fas fa-user"></i> ${user.email.split('@')[0]}`;
+                loginBtn.href = '#';
+                loginBtn.onclick = function() {
+                    localStorage.removeItem('currentUser');
+                    window.location.reload();
+                };
+            }
+        });
+    </script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

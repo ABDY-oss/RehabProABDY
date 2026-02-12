@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RehabPro - Питание</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1>RehabPro</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                    <a href="exercises.html"><i class="fas fa-dumbbell"></i> Упражнения</a>
+                    <a href="nutrition.html" class="active"><i class="fas fa-apple-alt"></i> Питание</a>
+                    <a href="tracker.html"><i class="fas fa-chart-line"></i> Трекер</a>
+                    <a href="login.html" id="login-btn"><i class="fas fa-user"></i> Войти</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="page-header">
+                <h2><i class="fas fa-apple-alt"></i> Питание для восстановления</h2>
+                <p>Правильное питание ускоряет процесс реабилитации</p>
+            </section>
+
+            <!-- Принципы питания -->
+            <section class="nutrition-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-clipboard-list"></i> Основные принципы питания</h3>
+                </div>
+                <div class="principles-grid">
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="fas fa-drumstick-bite"></i>
+                        </div>
+                        <div class="principle-content">
+                            <h4>Белок</h4>
+                            <p>Строительный материал для мышц и тканей. Употребляйте нежирное мясо, рыбу, яйца, творог.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="fas fa-fish"></i>
+                        </div>
+                        <div class="principle-content">
+                            <h4>Омега-3</h4>
+                            <p>Уменьшает воспаление. Содержится в жирной рыбе, льняном масле, грецких орехах.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="fas fa-lemon"></i>
+                        </div>
+                        <div class="principle-content">
+                            <h4>Витамин C</h4>
+                            <p>Способствует заживлению тканей. Ешьте цитрусовые, болгарский перец, киви, брокколи.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="fas fa-bone"></i>
+                        </div>
+                        <div class="principle-content">
+                            <h4>Кальций и витамин D</h4>
+                            <p>Для здоровья костей. Молочные продукты, яйца, рыба, солнечный свет.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="principle-content">
+                            <h4>Антиоксиданты</h4>
+                            <p>Защищают клетки от повреждений. Ягоды, зеленый чай, орехи, темный шоколад.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="principle-content">
+                            <h4>Вода</h4>
+                            <p>Не менее 2 литров в день для нормального обмена веществ и вывода токсинов.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Продукты для восстановления -->
+            <section class="nutrition-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-shopping-basket"></i> Продукты для быстрого восстановления</h3>
+                </div>
+                <div class="products-container">
+                    <div class="product-row">
+                        <div class="product-item">
+                            <div class="product-icon">
+                                <i class="fas fa-fish"></i>
+                            </div>
+                            <div class="product-info">
+                                <h4>Лосось</h4>
+                                <p>Богат Омега-3 и белком</p>
+                            </div>
+                        </div>
+            
+                        <div class="product-item">
+                            <div class="product-icon">
+                                <i class="fas fa-egg"></i>
+                            </div>
+                            <div class="product-info">
+                                <h4>Яйца</h4>
+                                <p>Полноценный белок и витамины</p>
+                            </div>
+                        </div>
+            
+                        <div class="product-item">
+                            <div class="product-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="product-info">
+                                <h4>Миндаль</h4>
+                                <p>Белок, здоровые жиры, магний</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="product-row">
+                        <div class="product-item">
+                            <div class="product-icon">
+                                <i class="fas fa-cheese"></i>
+                            </div>
+                            <div class="product-info">
+                                <h4>Творог</h4>
+                                <p>Кальций и казеин для мышц</p>
+                            </div>
+                        </div>
+            
+                        <div class="product-item">
+                            <div class="product-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="product-info">
+                                <h4>Брокколи</h4>
+                                <p>Витамины и антиоксиданты</p>
+                            </div>
+                        </div>
+            
+                        <div class="product-item">
+                            <div class="product-icon">
+                                <i class="fas fa-drumstick-bite"></i>
+                            </div>
+                            <div class="product-info">
+                                <h4>Куриная грудка</h4>
+                                <p>Нежирный белок для восстановления</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Пример дневного меню -->
+            <section class="nutrition-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-utensils"></i> Пример дневного меню</h3>
+                </div>
+                <div class="daily-menu">
+                    <div class="menu-item-large">
+                        <div class="menu-time-large">07:00</div>
+                        <div class="menu-content-large">
+                            <h4>Завтрак</h4>
+                            <p>Овсянка на воде с ягодами и орехами, 2 вареных яйца, зеленый чай</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item-large">
+                        <div class="menu-time-large">10:00</div>
+                        <div class="menu-content-large">
+                            <h4>Перекус</h4>
+                            <p>Творог с бананом и медом, горсть миндаля</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item-large">
+                        <div class="menu-time-large">13:00</div>
+                        <div class="menu-content-large">
+                            <h4>Обед</h4>
+                            <p>Запеченная куриная грудка с гречкой и овощным салатом (огурцы, помидоры, зелень)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item-large">
+                        <div class="menu-time-large">16:00</div>
+                        <div class="menu-content-large">
+                            <h4>Перекус</h4>
+                            <p>Протеиновый коктейль или греческий йогурт с фруктами</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item-large">
+                        <div class="menu-time-large">19:00</div>
+                        <div class="menu-content-large">
+                            <h4>Ужин</h4>
+                            <p>Запеченная рыба (лосось/форель) с брокколи на пару и бурым рисом</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item-large">
+                        <div class="menu-time-large">21:00</div>
+                        <div class="menu-content-large">
+                            <h4>Перед сном</h4>
+                            <p>Стакан кефира или порция творога</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Калькулятор калорий -->
+            <section class="nutrition-section calculator-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-calculator"></i> Калькулятор калорий</h3>
+                </div>
+                
+                <div class="calculator-form">
+                    <div class="form-row">
+                        <div class="form-group-large">
+                            <label for="gender"><i class="fas fa-venus-mars"></i> Пол</label>
+                            <select id="gender" class="form-control-large">
+                                <option value="male">Мужской</option>
+                                <option value="female">Женский</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group-large">
+                            <label for="age"><i class="fas fa-birthday-cake"></i> Возраст (лет)</label>
+                            <input type="number" id="age" class="form-control-large" min="10" max="100" value="30">
+                        </div>
+                        
+                        <div class="form-group-large">
+                            <label for="weight"><i class="fas fa-weight"></i> Вес (кг)</label>
+                            <input type="number" id="weight" class="form-control-large" min="30" max="200" value="70">
+                        </div>
+                        
+                        <div class="form-group-large">
+                            <label for="height"><i class="fas fa-ruler-vertical"></i> Рост (см)</label>
+                            <input type="number" id="height" class="form-control-large" min="100" max="250" value="175">
+                        </div>
+                    </div>
+                    
+                    <!-- Вместо блока активности с радио-кнопками: -->
+                    <div class="form-row">
+                        <div class="form-group-full">
+                            <label><i class="fas fa-running"></i> Уровень активности</label>
+                            <select id="activity-level" class="form-control-large select-custom">
+                                <option value="1.2" selected>Минимальный (сидячий образ жизни)</option>
+                                <option value="1.375">Низкий (легкие упражнения 1-3 раза/неделю)</option>
+                                <option value="1.55">Умеренный (тренировки 3-5 раз/неделю)</option>
+                                <option value="1.725">Высокий (интенсивные тренировки 6-7 раз/неделю)</option>
+                                <option value="1.9">Очень высокий (профессиональные спортсмены)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Вместо блока цели с радио-кнопками: -->
+                    <div class="form-row">
+                        <div class="form-group-full">
+                            <label><i class="fas fa-bullseye"></i> Цель</label>
+                            <select id="goal-select" class="form-control-large select-custom">
+                                <option value="0.7">Быстрое похудение (-30%)</option>
+                                <option value="0.8" selected>Похудение (-20%)</option>
+                                <option value="1">Поддержание веса</option>
+                                <option value="1.1">Набор массы (+10%)</option>
+                                <option value="1.2">Быстрый набор массы (+20%)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group-full">
+                            <button id="calculate-calories" class="calculate-btn-large">
+                                <i class="fas fa-calculator"></i> Рассчитать калории
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="results-section"></div>
+            </section>
+
+            <!-- Советы по образу жизни -->
+            <section class="nutrition-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-lightbulb"></i> Советы по образу жизни</h3>
+                </div>
+                <div class="tips-container">
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h4>Сон</h4>
+                            <p>Спите 7-9 часов для полного восстановления организма и гормонального баланса.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h4>Гидратация</h4>
+                            <p>Пейте воду равномерно в течение дня, особенно до и после тренировок.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h4>Избегайте</h4>
+                            <p>Ограничьте сахар, алкоголь, фаст-фуд и обработанные продукты.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h4>Регулярность</h4>
+                            <p>Ешьте каждые 3-4 часа небольшими порциями для стабильного метаболизма.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2026 RehabPro. Все права защищены.</p>
+            <p>Информация о питании носит рекомендательный характер</p>
+        </footer>
+    </div>
+
+    <script src="js/nutrition.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const loginBtn = document.getElementById('login-btn');
+            
+            if (user) {
+                loginBtn.innerHTML = `<i class="fas fa-user"></i> ${user.email.split('@')[0]}`;
+                loginBtn.href = '#';
+                loginBtn.onclick = function() {
+                    localStorage.removeItem('currentUser');
+                    window.location.reload();
+                };
+            }
+        });
+    </script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

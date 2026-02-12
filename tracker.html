@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RehabPro - Трекер</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1>RehabPro</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                    <a href="exercises.html"><i class="fas fa-dumbbell"></i> Упражнения</a>
+                    <a href="nutrition.html"><i class="fas fa-apple-alt"></i> Питание</a>
+                    <a href="tracker.html" class="active"><i class="fas fa-chart-line"></i> Трекер</a>
+                    <a href="login.html" id="login-btn"><i class="fas fa-user"></i> Войти</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="page-header">
+                <h2><i class="fas fa-chart-line"></i> Трекер реабилитации</h2>
+                <p>Отслеживайте ваш прогресс и достижения</p>
+            </section>
+
+            <div class="tracker-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Серия</h3>
+                        <p class="stat-value" id="streak">0 дней</p>
+                        <p class="stat-desc">Дней подряд с упражнениями</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Всего дней</h3>
+                        <p class="stat-value" id="total-days">0 дней</p>
+                        <p class="stat-desc">Общая продолжительность реабилитации</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Сегодня</h3>
+                        <p class="stat-value" id="today-exercises">0 упражнений</p>
+                        <p class="stat-desc">Количество выполненных упражнений за сегодня</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Всего</h3>
+                        <p class="stat-value" id="total-exercises">0 упражнений</p>
+                        <p class="stat-desc">Общее количество выполненых упражнений</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tracker-content">
+                <div class="workout-diary">
+                    <h3><i class="fas fa-book"></i> Дневник тренировок</h3>
+                    <div class="diary-form">
+                        <div class="form-group">
+                            <label for="workout-date"><i class="fas fa-calendar"></i> Дата:</label>
+                            <input type="date" id="workout-date" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="workout-time"><i class="fas fa-clock"></i> Время:</label>
+                            <input type="time" id="workout-time" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="workout-type"><i class="fas fa-dumbbell"></i> Тип тренировки:</label>
+                            <input type="text" id="workout-type" placeholder="Например: Упражнения для колена">
+                        </div>
+                        <div class="form-group">
+                            <label for="workout-description"><i class="fas fa-file-alt"></i> Описание:</label>
+                            <textarea id="workout-description" rows="3" placeholder="Опишите вашу тренировку..."></textarea>
+                        </div>
+                        <button id="add-workout" class="btn-primary">
+                            <i class="fas fa-plus"></i> Добавить запись
+                        </button>
+                    </div>
+
+                    <div class="workout-history">
+                        <h4><i class="fas fa-history"></i> История тренировок</h4>
+                        <div id="workout-list">
+                            <p class="empty-message">Нет записей о тренировках. Добавьте первую!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-chart">
+                    <h3><i class="fas fa-chart-bar"></i> Прогресс за неделю</h3>
+                    <div class="chart-container">
+                        <canvas id="progressChart"></canvas>
+                    </div>
+                    <div class="chart-info">
+                        <p><i class="fas fa-info-circle"></i> График показывает количество выполненных упражнений за последние 7 дней</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="achievements">
+                <h3><i class="fas fa-medal"></i> Достижения</h3>
+                <div class="achievements-grid">
+                    <div class="achievement" id="first-day">
+                        <i class="fas fa-star"></i>
+                        <h4>Первый шаг</h4>
+                        <p>Начните реабилитацию</p>
+                    </div>
+                    <div class="achievement" id="three-days">
+                        <i class="fas fa-fire"></i>
+                        <h4>3 дня подряд</h4>
+                        <p>Занимайтесь 3 дня подряд</p>
+                    </div>
+                    <div class="achievement" id="week-streak">
+                        <i class="fas fa-trophy"></i>
+                        <h4>Неделя</h4>
+                        <p>Занимайтесь 7 дней подряд</p>
+                    </div>
+                    <div class="achievement" id="month-streak">
+                        <i class="fas fa-crown"></i>
+                        <h4>Месяц</h4>
+                        <p>Занимайтесь 30 дней подряд</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2026 RehabPro. Все права защищены.</p>
+            <p>Ваш прогресс сохраняется локально на устройстве</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/tracker.js"></script>
+    <script>
+        // Проверка авторизации
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const loginBtn = document.getElementById('login-btn');
+            
+            if (user) {
+                loginBtn.innerHTML = `<i class="fas fa-user"></i> ${user.email.split('@')[0]}`;
+                loginBtn.href = '#';
+                loginBtn.onclick = function() {
+                    localStorage.removeItem('currentUser');
+                    window.location.reload();
+                };
+            }
+            
+            // Устанавливаем сегодняшнюю дату по умолчанию
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('workout-date').value = today;
+            
+            // Устанавливаем текущее время
+            const now = new Date();
+            const time = now.getHours().toString().padStart(2, '0') + ':' + 
+                        now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('workout-time').value = time;
+        });
+    </script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

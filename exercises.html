@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RehabPro - Упражнения</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1>RehabPro</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                    <a href="exercises.html" class="active"><i class="fas fa-dumbbell"></i> Упражнения</a>
+                    <a href="nutrition.html"><i class="fas fa-apple-alt"></i> Питание</a>
+                    <a href="tracker.html"><i class="fas fa-chart-line"></i> Трекер</a>
+                    <a href="login.html" id="login-btn"><i class="fas fa-user"></i> Войти</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="page-header">
+                <h2><i class="fas fa-dumbbell"></i> Упражнения для реабилитации</h2>
+                <p>Выберите тип травмы и уровень сложности для персонализированной программы</p>
+            </section>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="exercise-search" placeholder="Поиск упражнений по названию или описанию...">
+                </div>
+                <div id="search-info" class="search-info"></div>
+            </div>
+
+            <div class="filter-container">
+                <div class="filter-group">
+                    <label for="injury-type"><i class="fas fa-bone"></i> Тип травмы:</label>
+                    <select id="injury-type">
+                        <option value="all">Все травмы</option>
+                        <option value="knee">Коленный сустав</option>
+                        <option value="shoulder">Плечевой сустав</option>
+                        <option value="back">Спина</option>
+                        <option value="ankle">Голеностоп</option>
+                        <option value="wrist">Запястье</option>
+                        <option value="neck">Шея</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="difficulty"><i class="fas fa-chart-line"></i> Сложность:</label>
+                    <select id="difficulty">
+                        <option value="all">Все уровни</option>
+                        <option value="beginner">Лёгкий</option>
+                        <option value="intermediate">Средний</option>
+                        <option value="advanced">Тяжёлый</option>
+                    </select>
+                </div>
+                <button id="reset-filters" class="btn-secondary">
+                    <i class="fas fa-redo"></i> Сбросить фильтры
+                </button>
+            </div>
+
+            <div class="daily-counter">
+                <p><i class="fas fa-calendar-day"></i> Упражнений выполнено сегодня: <span id="today-counter">0</span>/3</p>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="exercises-grid" id="exercises-container">
+                <!-- Упражнения будут загружены через JS -->
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Загрузка упражнений...</p>
+                </div>
+            </div>
+
+            <div class="exercise-info">
+                <h3><i class="fas fa-lightbulb"></i> Важно помнить:</h3>
+                <div class="tips">
+                    <p><i class="fas fa-exclamation-triangle"></i> Выполняйте упражнения без боли. Дискомфорт допустим, но сильная боль - нет.</p>
+                    <p><i class="fas fa-clock"></i> Занимайтесь регулярно, но не переутомляйтесь.</p>
+                    <p><i class="fas fa-user-md"></i> Консультируйтесь с врачом при увеличении нагрузки.</p>
+                    <p><i class="fas fa-water"></i> Не забывайте пить воду во время тренировок.</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2026 RehabPro. Все права защищены.</p>
+            <p>Перед выполнением упражнений проконсультируйтесь с врачом</p>
+        </footer>
+    </div>
+
+    <!-- Важно: database.js должен загружаться ПЕРЕД exercises.js -->
+    <script src="js/database.js"></script>
+    <script src="js/exercises.js"></script>
+    
+    <script>
+        // Проверка авторизации (отдельный скрипт для этой страницы)
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const loginBtn = document.getElementById('login-btn');
+            
+            if (user) {
+                loginBtn.innerHTML = `<i class="fas fa-user"></i> ${user.email.split('@')[0]}`;
+                loginBtn.href = '#';
+                loginBtn.onclick = function() {
+                    localStorage.removeItem('currentUser');
+                    window.location.reload();
+                };
+            }
+        });
+    </script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

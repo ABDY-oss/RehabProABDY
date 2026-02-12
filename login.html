@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RehabPro - Вход</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1>RehabPro</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                    <a href="exercises.html"><i class="fas fa-dumbbell"></i> Упражнения</a>
+                    <a href="nutrition.html"><i class="fas fa-apple-alt"></i> Питание</a>
+                    <a href="tracker.html"><i class="fas fa-chart-line"></i> Трекер</a>
+                </div>
+            </nav>
+        </header>
+
+        <main class="auth-container">
+            <div class="auth-card">
+                <h2><i class="fas fa-user-circle"></i> Вход в аккаунт</h2>
+                
+                <div class="auth-tabs">
+                    <button class="tab-btn active" id="login-tab">Вход</button>
+                    <button class="tab-btn" id="register-tab">Регистрация</button>
+                </div>
+
+                <!-- Форма входа -->
+                <div class="auth-form" id="login-form">
+                    <div class="form-group">
+                        <label for="login-email"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="login-email" placeholder="Введите ваш email">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password"><i class="fas fa-lock"></i> Пароль</label>
+                        <input type="password" id="login-password" placeholder="Введите пароль">
+                    </div>
+                    <button class="btn-primary" id="login-submit">
+                        <i class="fas fa-sign-in-alt"></i> Войти
+                    </button>
+                    
+                    <!-- Сообщение об ошибке входа -->
+                    <div id="login-error" class="error-message"></div>
+                    
+                    <!-- Сообщение об успехе входа -->
+                    <div id="login-success" class="success-message"></div>
+                </div>
+
+                <!-- Форма регистрации -->
+                <div class="auth-form hidden" id="register-form">
+                    <div class="form-group">
+                        <label for="register-email"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="register-email" placeholder="Введите ваш email">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password"><i class="fas fa-lock"></i> Пароль</label>
+                        <input type="password" id="register-password" placeholder="Придумайте пароль (минимум 6 символов)">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm"><i class="fas fa-lock"></i> Подтвердите пароль</label>
+                        <input type="password" id="register-confirm" placeholder="Повторите пароль">
+                    </div>
+                    <button class="btn-primary" id="register-submit">
+                        <i class="fas fa-user-plus"></i> Зарегистрироваться
+                    </button>
+                    
+                    <!-- Сообщение об ошибке регистрации -->
+                    <div id="register-error" class="error-message"></div>
+                    
+                    <!-- Сообщение об успехе регистрации -->
+                    <div id="register-success" class="success-message"></div>
+                </div>
+
+                <div class="auth-info">
+                    <p><i class="fas fa-info-circle"></i> Создайте аккаунт для сохранения вашего прогресса</p>
+                    <a href="index.html" class="btn-secondary">
+                        <i class="fas fa-arrow-left"></i> На главную
+                    </a>
+                    
+                    <!-- Кнопка демо-входа будет добавлена автоматически через auth.js -->
+                </div>
+            </div>
+            
+            <!-- Дополнительная информация - ПЕРЕМЕЩЕНА и ПЕРЕРАБОТАНА -->
+            <div class="auth-benefits">
+                <h3><i class="fas fa-star"></i> Преимущества аккаунта RehabPro</h3>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Отслеживание прогресса</h4>
+                            <p>Сохраняйте историю ваших тренировок и достижений</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Персональный план</h4>
+                            <p>Получайте рекомендации по упражнениям и питанию</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Достижения</h4>
+                            <p>Открывайте достижения за регулярные тренировки</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2026 RehabPro. Все права защищены.</p>
+            <p>Ваши данные хранятся локально на вашем устройстве</p>
+        </footer>
+    </div>
+
+    <!-- Подключаем скрипт авторизации -->
+    <script src="js/auth.js"></script>
+</body>
+</html>
