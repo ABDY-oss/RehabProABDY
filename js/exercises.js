@@ -59,7 +59,7 @@ function loadAllExercises() {
     displayExercises(currentExercises);
 }
 
-// Отображение упражнений на странице
+// Отображение упражнений
 function displayExercises(exercises) {
     const container = document.getElementById('exercises-container');
     if (!container) return;
@@ -83,6 +83,9 @@ function displayExercises(exercises) {
     });
     
     updateSearchInfo(exercises.length);
+    
+    // Инициализируем обработчики видео после отображения карточек
+    setTimeout(initVideoHandlers, 100);
 }
 
 // Создание карточки упражнения
@@ -113,7 +116,7 @@ function createExerciseCard(exercise) {
     card.innerHTML = `
         <div class="exercise-header">
             <h3>
-                ${exercise.name}
+                ${escapeHtml(exercise.name)}
                 <span class="difficulty-badge ${exercise.difficulty}">
                     ${difficultyText[exercise.difficulty] || exercise.difficulty}
                 </span>
@@ -125,26 +128,24 @@ function createExerciseCard(exercise) {
                 <span><i class="fas fa-clock"></i> ${exercise.duration}</span>
             </div>
             
-            <p class="exercise-description">${exercise.description}</p>
+            <p class="exercise-description">${escapeHtml(exercise.description)}</p>
             
             <div class="exercise-video">
-                <div class="video-container" data-video-path="videos/${exercise.videoUrl}">
-                   <video controls preload="metadata">
-                        <source src="videos/${exercise.videoUrl}.mp4" type="video/mp4">
-                        Ваш браузер не поддерживает видео тег.
-                    </video>
-                </div>
+                <video controls preload="metadata" data-video-id="${exercise.id}">
+                    <source src="videos/${exercise.videoUrl}.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео тег.
+                </video>
             </div>
             
             <div class="exercise-warning">
                 <h4><i class="fas fa-exclamation-triangle"></i> Предупреждение</h4>
-                <p>${exercise.warning}</p>
+                <p>${escapeHtml(exercise.warning)}</p>
             </div>
             
             <div class="exercise-tips">
-                <p><strong><i class="fas fa-lightbulb"></i> Совет:</strong> ${exercise.tips}</p>
-                <p><strong><i class="fas fa-dumbbell"></i> Мышцы:</strong> ${exercise.muscleGroup}</p>
-                <p><strong><i class="fas fa-tools"></i> Оборудование:</strong> ${exercise.equipment}</p>
+                <p><strong><i class="fas fa-lightbulb"></i> Совет:</strong> ${escapeHtml(exercise.tips)}</p>
+                <p><strong><i class="fas fa-dumbbell"></i> Мышцы:</strong> ${escapeHtml(exercise.muscleGroup)}</p>
+                <p><strong><i class="fas fa-tools"></i> Оборудование:</strong> ${escapeHtml(exercise.equipment)}</p>
             </div>
             
             <div class="exercise-actions">
@@ -169,6 +170,14 @@ function createExerciseCard(exercise) {
     return card;
 }
 
+// Функция для экранирования HTML (безопасность)
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 // Получение количества выполненных упражнений за сегодня
 function getCompletedTodayCount(exerciseId) {
     const user = JSON.parse(localStorage.getItem('currentUser'));
@@ -188,7 +197,7 @@ function getCompletedTodayCount(exerciseId) {
     return todayExercises[exerciseId] || 0;
 }
 
-// Отметка упражнения как выполненного - ИСПРАВЛЕНО с учётом дней
+// Отметка упражнения как выполненного
 function markExerciseAsCompleted(exerciseId, buttonElement) {
     const user = JSON.parse(localStorage.getItem('currentUser'));
     
@@ -240,23 +249,19 @@ function markExerciseAsCompleted(exerciseId, buttonElement) {
     // Обновляем статистику
     userData.stats.totalExercises = (userData.stats.totalExercises || 0) + 1;
     
-    // ИСПРАВЛЕНИЕ 1: Правильный учёт дней реабилитации
+    // Правильный учёт дней реабилитации
     const lastActive = userData.stats.lastActiveDate;
     const yesterday = new Date(today);
     yesterday.setDate(yesterday.getDate() - 1);
     const yesterdayString = yesterday.toDateString();
     
-    // Если это первое упражнение за сегодня
     if (wasTodayEmpty) {
-        // Если это первый день в принципе
         if (!lastActive) {
             userData.stats.totalDays = 1;
         } 
-        // Если последняя активность была вчера - увеличиваем общее количество дней
         else if (lastActive === yesterdayString) {
             userData.stats.totalDays = (userData.stats.totalDays || 0) + 1;
         }
-        // Если был перерыв - всё равно считаем это новым днём
         else if (lastActive !== today) {
             userData.stats.totalDays = (userData.stats.totalDays || 0) + 1;
         }
@@ -278,7 +283,7 @@ function markExerciseAsCompleted(exerciseId, buttonElement) {
     showNotification('Упражнение отмечено как выполненное!');
 }
 
-// Обновление серии дней - ИСПРАВЛЕНО
+// Обновление серии дней
 function updateStreak(userData, today) {
     const yesterday = new Date(today);
     yesterday.setDate(yesterday.getDate() - 1);
@@ -452,6 +457,38 @@ function resetDailyCounters() {
     });
 }
 
+// Функция для обработки ошибок видео
+function handleVideoError(videoElement) {
+    videoElement.onerror = function() {
+        const container = videoElement.closest('.exercise-video');
+        if (container) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'video-placeholder';
+            errorDiv.innerHTML = `
+                <i class="fas fa-video-slash" style="font-size: 32px; margin-bottom: 10px;"></i>
+                <p>Видео недоступно</p>
+                <small>Пожалуйста, проверьте подключение к интернету</small>
+            `;
+            errorDiv.style.cssText = `
+                background: #f5f5f5;
+                border-radius: 12px;
+                padding: 40px 20px;
+                text-align: center;
+                color: var(--text-light);
+            `;
+            videoElement.style.display = 'none';
+            container.appendChild(errorDiv);
+        }
+    };
+}
+
+// Инициализация обработчиков видео
+function initVideoHandlers() {
+    document.querySelectorAll('.exercise-video video').forEach(video => {
+        handleVideoError(video);
+    });
+}
+
 // Показать уведомление
 function showNotification(message) {
     const oldNotification = document.querySelector('.notification');
@@ -515,64 +552,27 @@ function addCustomStyles() {
         const style = document.createElement('style');
         style.id = 'exercises-custom-styles';
         style.textContent = `
-            .loading {
-                grid-column: 1/-1;
+            .video-placeholder {
+                background: #f5f5f5;
+                border-radius: 12px;
+                padding: 40px 20px;
                 text-align: center;
-                padding: 60px;
                 color: var(--text-light);
             }
             
-            .loading i {
-                font-size: 48px;
-                margin-bottom: 20px;
-                color: var(--primary-color);
-            }
-            
-            .complete-btn.completed-max {
-                background-color: #4CAF50;
-                opacity: 0.8;
-                cursor: not-allowed;
-            }
-            
-            .complete-btn.completed-max:hover {
-                background-color: #4CAF50;
-                transform: none;
-                box-shadow: none;
-            }
-            
-            .search-info {
-                text-align: center;
-                margin-top: 10px;
+            .video-placeholder i {
+                font-size: 32px;
+                margin-bottom: 10px;
                 color: var(--text-light);
-                font-size: 14px;
             }
             
-            @keyframes slideIn {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
+            .video-placeholder p {
+                margin-bottom: 5px;
             }
             
-            @keyframes slideOut {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-            }
-            
-            .error-message {
-                background: #ffebee;
-                border-radius: 10px;
-                border-left: 4px solid #f44336;
+            .video-placeholder small {
+                font-size: 12px;
+                opacity: 0.7;
             }
         `;
         document.head.appendChild(style);
@@ -598,23 +598,3 @@ window.rehabProExercises = {
     updateDailyCounter,
     markExerciseAsCompleted
 };
-
-function playVideo(placeholder) {
-    const container = placeholder.parentElement;
-    const video = container.querySelector('video');
-    const videoPath = container.dataset.videoPath;
-    
-    fetch(videoPath, { method: 'HEAD' })
-        .then(response => {
-            if (response.ok) {
-                placeholder.style.display = 'none';
-                video.style.display = 'block';
-                video.play();
-            } else {
-                alert('Видеофайл не найден. Пожалуйста, проверьте наличие файла: ' + videoPath);
-            }
-        })
-        .catch(() => {
-            alert('Ошибка загрузки видео');
-        });
-}
