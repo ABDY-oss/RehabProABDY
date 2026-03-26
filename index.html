@@ -30,7 +30,7 @@
                 <div class="hero-content">
                     <h2>Ваш путь к восстановлению начинается здесь</h2>
                     <p>Персонализированная программа реабилитации с учетом ваших потребностей</p>
-                    <a href="exercises.html" class="btn-primary">
+                    <a href="#" id="start-rehab-btn" class="btn-primary">
                         <i class="fas fa-play-circle"></i> Начать реабилитацию
                     </a>
                 </div>
@@ -102,25 +102,106 @@
 
     <script src="js/auth.js"></script>
     <script>
-        // Проверка авторизации
+        // Проверка авторизации и обновление кнопки входа
         document.addEventListener('DOMContentLoaded', function() {
             const user = JSON.parse(localStorage.getItem('currentUser'));
             const loginBtn = document.getElementById('login-btn');
+            const startRehabBtn = document.getElementById('start-rehab-btn');
             
+            // Обновляем кнопку входа
             if (user) {
                 loginBtn.innerHTML = `<i class="fas fa-user"></i> ${user.email.split('@')[0]}`;
                 loginBtn.href = '#';
-                loginBtn.onclick = function() {
-                    localStorage.removeItem('currentUser');
-                    window.location.reload();
+                loginBtn.onclick = function(e) {
+                    e.preventDefault();
+                    // Вызываем функцию открытия профиля из profile.js
+                    if (typeof window.profileModal !== 'undefined' && window.profileModal.openProfileModal) {
+                        window.profileModal.openProfileModal();
+                    } else {
+                        // Если profile.js не загружен, просто выходим
+                        localStorage.removeItem('currentUser');
+                        window.location.reload();
+                    }
                 };
             }
+            
+            // Обработчик кнопки "Начать реабилитацию"
+            if (startRehabBtn) {
+                startRehabBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Проверяем, авторизован ли пользователь
+                    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                    
+                    if (currentUser) {
+                        // Если пользователь авторизован - переходим на страницу упражнений
+                        console.log('Пользователь авторизован, переход к упражнениям');
+                        window.location.href = 'exercises.html';
+                    } else {
+                        // Если пользователь не авторизован - показываем уведомление и перенаправляем на регистрацию
+                        console.log('Пользователь не авторизован, перенаправление на регистрацию');
+                        
+                        // Показываем уведомление
+                        showAuthNotification();
+                        
+                        // Перенаправляем на страницу входа/регистрации
+                        setTimeout(() => {
+                            window.location.href = 'login.html';
+                        }, 1500);
+                    }
+                });
+            }
         });
+        
+        // Функция для показа уведомления о необходимости регистрации
+        function showAuthNotification() {
+            // Удаляем старое уведомление, если есть
+            const oldNotification = document.querySelector('.notification');
+            if (oldNotification) {
+                oldNotification.remove();
+            }
+            
+            // Создаем новое уведомление
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <i class="fas fa-info-circle"></i>
+                <span>Для начала реабилитации необходимо войти в аккаунт. Перенаправление на страницу регистрации...</span>
+            `;
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--info-color);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                z-index: 1000;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                animation: slideIn 0.3s ease;
+                max-width: 90%;
+                font-size: 14px;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Автоматически удаляем через 1.5 секунды
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideOut 0.3s ease forwards';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.remove();
+                        }
+                    }, 300);
+                }
+            }, 1400);
+        }
     </script>
     <script src="js/profile.js"></script>
 </body>
-
 </html>
-
-
-
