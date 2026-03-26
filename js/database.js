@@ -173,7 +173,7 @@ const exercisesDatabase = [
     },
     {
         id: 14,
-        name: "Динамическое укрепление шеи с резинкой",
+        name: "Укрепление шеи с резинкой",
         injuryType: "neck",
         difficulty: "advanced",
         description: "Продвинутая стабилизация шейного отдела.",
