@@ -1945,3 +1945,46 @@ footer p:first-child {
     font-size: 12px;
     color: var(--info-color);
 }
+
+/* Улучшенные стили для видео на мобильных */
+.exercise-video {
+    position: relative;
+    width: 100%;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.exercise-video video {
+    width: 100%;
+    max-height: 240px;
+    border-radius: 12px;
+    background: #000;
+    display: block;
+    cursor: pointer;
+}
+
+/* Стили для полноэкранного режима на мобильных */
+.exercise-video video::-webkit-media-controls {
+    overflow: visible !important;
+}
+
+.exercise-video video::-webkit-media-controls-fullscreen-button {
+    display: block !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Для всех браузеров */
+.exercise-video video:fullscreen {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+}
+
+.exercise-video video:-webkit-full-screen {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+}
