@@ -1929,3 +1929,19 @@ footer p:first-child {
         grid-template-columns: 1fr;
     }
 }
+
+.search-hint {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.search-hint i {
+    font-size: 12px;
+    color: var(--info-color);
+}
