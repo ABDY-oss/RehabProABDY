@@ -20,7 +20,7 @@
                     <a href="exercises.html"><i class="fas fa-dumbbell"></i> Упражнения</a>
                     <a href="nutrition.html"><i class="fas fa-apple-alt"></i> Питание</a>
                     <a href="tracker.html"><i class="fas fa-chart-line"></i> Трекер</a>
-                    <a href="login.html" id="login-btn"><i class="fas fa-user"></i> Войти</a>
+                    <a href="#" id="login-btn"><i class="fas fa-user"></i> Войти</a>
                 </div>
             </nav>
         </header>
@@ -80,7 +80,7 @@
                         <i class="fas fa-calendar-check"></i>
                         <span>Трекер</span>
                     </a>
-                    <a href="login.html" class="quick-link-card">
+                    <a href="#" id="my-account-btn" class="quick-link-card">
                         <i class="fas fa-user-plus"></i>
                         <span>Мой аккаунт</span>
                     </a>
@@ -102,27 +102,36 @@
 
     <script src="js/auth.js"></script>
     <script>
-        // Проверка авторизации и обновление кнопки входа
+        // Проверка авторизации и обновление кнопок
         document.addEventListener('DOMContentLoaded', function() {
             const user = JSON.parse(localStorage.getItem('currentUser'));
             const loginBtn = document.getElementById('login-btn');
             const startRehabBtn = document.getElementById('start-rehab-btn');
+            const myAccountBtn = document.getElementById('my-account-btn');
             
-            // Обновляем кнопку входа
+            // Обновляем кнопку входа/профиля в навигации
             if (user) {
-                loginBtn.innerHTML = `<i class="fas fa-user"></i> ${user.email.split('@')[0]}`;
+                // Получаем имя пользователя из профиля
+                const userDataKey = `user_${user.id}_data`;
+                const userData = JSON.parse(localStorage.getItem(userDataKey));
+                const username = userData?.profile?.name || user.email.split('@')[0];
+                
+                loginBtn.innerHTML = `<i class="fas fa-user"></i> ${username} <i class="fas fa-cog" style="font-size: 12px;"></i>`;
                 loginBtn.href = '#';
                 loginBtn.onclick = function(e) {
                     e.preventDefault();
-                    // Вызываем функцию открытия профиля из profile.js
+                    // Открываем модальное окно профиля
                     if (typeof window.profileModal !== 'undefined' && window.profileModal.openProfileModal) {
                         window.profileModal.openProfileModal();
                     } else {
-                        // Если profile.js не загружен, просто выходим
-                        localStorage.removeItem('currentUser');
-                        window.location.reload();
+                        console.error('profileModal не загружен');
+                        alert('Ошибка загрузки профиля. Пожалуйста, обновите страницу.');
                     }
                 };
+            } else {
+                loginBtn.innerHTML = '<i class="fas fa-user"></i> Войти';
+                loginBtn.href = 'login.html';
+                loginBtn.onclick = null;
             }
             
             // Обработчик кнопки "Начать реабилитацию"
@@ -130,7 +139,6 @@
                 startRehabBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     
-                    // Проверяем, авторизован ли пользователь
                     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
                     
                     if (currentUser) {
@@ -140,11 +148,34 @@
                     } else {
                         // Если пользователь не авторизован - показываем уведомление и перенаправляем на регистрацию
                         console.log('Пользователь не авторизован, перенаправление на регистрацию');
-                        
-                        // Показываем уведомление
-                        showAuthNotification();
-                        
-                        // Перенаправляем на страницу входа/регистрации
+                        showAuthNotification('Для начала реабилитации необходимо войти в аккаунт');
+                        setTimeout(() => {
+                            window.location.href = 'login.html';
+                        }, 1500);
+                    }
+                });
+            }
+            
+            // Обработчик кнопки "Мой аккаунт"
+            if (myAccountBtn) {
+                myAccountBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                    
+                    if (currentUser) {
+                        // Если пользователь авторизован - открываем профиль
+                        console.log('Пользователь авторизован, открытие профиля');
+                        if (typeof window.profileModal !== 'undefined' && window.profileModal.openProfileModal) {
+                            window.profileModal.openProfileModal();
+                        } else {
+                            console.error('profileModal не загружен');
+                            alert('Ошибка загрузки профиля. Пожалуйста, обновите страницу.');
+                        }
+                    } else {
+                        // Если пользователь не авторизован - перенаправляем на регистрацию
+                        console.log('Пользователь не авторизован, перенаправление на регистрацию');
+                        showAuthNotification('Для доступа к аккаунту необходимо войти или зарегистрироваться');
                         setTimeout(() => {
                             window.location.href = 'login.html';
                         }, 1500);
@@ -154,7 +185,7 @@
         });
         
         // Функция для показа уведомления о необходимости регистрации
-        function showAuthNotification() {
+        function showAuthNotification(message) {
             // Удаляем старое уведомление, если есть
             const oldNotification = document.querySelector('.notification');
             if (oldNotification) {
@@ -166,7 +197,7 @@
             notification.className = 'notification';
             notification.innerHTML = `
                 <i class="fas fa-info-circle"></i>
-                <span>Для начала реабилитации необходимо войти в аккаунт. Перенаправление на страницу регистрации...</span>
+                <span>${message}</span>
             `;
             
             notification.style.cssText = `
