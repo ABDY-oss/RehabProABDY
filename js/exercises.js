@@ -324,18 +324,20 @@ function updateButtonState(button, newCount) {
     }, 300);
 }
 
-// Фильтрация упражнений
+// Фильтрация упражнений - ТОЛЬКО ПО НАЗВАНИЮ
 function filterExercises() {
-    const searchTerm = document.getElementById('exercise-search').value.toLowerCase();
+    const searchTerm = document.getElementById('exercise-search').value.toLowerCase().trim();
     const injuryFilter = document.getElementById('injury-type').value;
     const difficultyFilter = document.getElementById('difficulty').value;
     
     if (!exercisesDatabase) return;
     
     const filtered = exercisesDatabase.filter(exercise => {
-        const matchesSearch = !searchTerm || 
-            exercise.name.toLowerCase().includes(searchTerm) ||
-            exercise.description.toLowerCase().includes(searchTerm);
+        // Поиск ТОЛЬКО по названию упражнения
+        let matchesSearch = true;
+        if (searchTerm) {
+            matchesSearch = exercise.name.toLowerCase().includes(searchTerm);
+        }
         
         const matchesInjury = injuryFilter === 'all' || exercise.injuryType === injuryFilter;
         const matchesDifficulty = difficultyFilter === 'all' || exercise.difficulty === difficultyFilter;
@@ -345,6 +347,9 @@ function filterExercises() {
     
     currentExercises = filtered;
     displayExercises(filtered);
+    
+    // Обновляем информацию о поиске
+    updateSearchInfo(filtered.length);
 }
 
 // Сброс фильтров
@@ -361,10 +366,20 @@ function updateSearchInfo(count) {
     const searchInfo = document.getElementById('search-info');
     if (!searchInfo) return;
     
-    if (count === exercisesDatabase.length) {
+    const searchTerm = document.getElementById('exercise-search').value.toLowerCase().trim();
+    
+    if (searchTerm && count === 0) {
+        searchInfo.textContent = `Упражнений с названием "${searchTerm}" не найдено`;
+        searchInfo.style.color = '#f44336';
+    } else if (searchTerm) {
+        searchInfo.textContent = `Найдено упражнений по названию "${searchTerm}": ${count} из ${exercisesDatabase.length}`;
+        searchInfo.style.color = 'var(--text-light)';
+    } else if (count === exercisesDatabase.length) {
         searchInfo.textContent = `Все упражнения (${count})`;
+        searchInfo.style.color = 'var(--text-light)';
     } else {
         searchInfo.textContent = `Найдено упражнений: ${count} из ${exercisesDatabase.length}`;
+        searchInfo.style.color = 'var(--text-light)';
     }
 }
 
