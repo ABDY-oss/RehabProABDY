@@ -379,7 +379,11 @@ function openProfileModal() {
     const user = JSON.parse(localStorage.getItem('currentUser'));
     
     if (!user) {
-        window.location.href = 'login.html';
+        // Если пользователь не авторизован, показываем уведомление и перенаправляем
+        showNotification('Пожалуйста, войдите в аккаунт');
+        setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 1500);
         return;
     }
     
