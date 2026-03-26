@@ -63,7 +63,7 @@ const exercisesDatabase = [
         duration: "2 подхода по 10 повторений",
         videoUrl: "2",
         warning: "Не запрокидывайте голову резко назад",
-        tips: "Выполняйте движения медленно и без боли.  Автор: https://www.youtube.com/@GymBalance",
+        tips: "Выполняйте движения медленно и без боли.  Автор: @GymBalance",
         muscleGroup: "Грудинно-ключично-сосцевидная мышца",
         equipment: "Без оборудования"
     },
@@ -76,7 +76,7 @@ const exercisesDatabase = [
         duration: "2 подхода по 15 вращений",
         videoUrl: "4",
         warning: "Не выполняйте при свежем растяжении",
-        tips: "Двигайтесь медленно, контролируя амплитуду.  Автор: https://www.youtube.com/@eastclinica/shorts",
+        tips: "Двигайтесь медленно, контролируя амплитуду.  Автор: @eastclinica",
         muscleGroup: "Мышцы голени",
         equipment: "Стул"
     },
@@ -89,7 +89,7 @@ const exercisesDatabase = [
         duration: "3 подхода по 15 повторений",
         videoUrl: "7",
         warning: "Избегайте переразгибания поясницы",
-        tips: "Поднимайте таз до линии корпуса. Автор: https://www.youtube.com/@Katya_perrott/shorts",
+        tips: "Поднимайте таз до линии корпуса. Автор: @Katya_perrott",
         muscleGroup: "Ягодичные, разгибатели спины",
         equipment: "Коврик"
     },
@@ -102,7 +102,7 @@ const exercisesDatabase = [
         duration: "2 подхода по 15 вращений в каждую сторону",
         videoUrl: "3",
         warning: "Не выполняйте через боль при воспалении",
-        tips: "Держите предплечья неподвижными.   Автор: https://www.youtube.com/@GymBalance",
+        tips: "Держите предплечья неподвижными.   Автор: @GymBalance",
         muscleGroup: "Сгибатели и разгибатели кисти",
         equipment: "Без оборудования"
     },
@@ -115,7 +115,7 @@ const exercisesDatabase = [
         duration: "3 подхода по 12 повторений",
         videoUrl: "9",
         warning: "Не увеличивайте нагрузку резко",
-        tips: "Контролируйте движение в обе стороны. Автор: https://www.youtube.com/@Stepan-Kochkin/shorts",
+        tips: "Контролируйте движение в обе стороны. Автор: @Stepan-Kochkin",
         muscleGroup: "Сгибатели кисти",
         equipment: "Эспандер"
     },
@@ -128,7 +128,7 @@ const exercisesDatabase = [
         duration: "3 подхода по 30 секунд",
         videoUrl: "10",
         warning: "Держитесь за опору при необходимости",
-        tips: "Смотрите в одну точку для лучшего баланса. Автор: https://www.youtube.com/@prokoleno1/shorts",
+        tips: "Смотрите в одну точку для лучшего баланса. Автор: @prokoleno1",
         muscleGroup: "Мышцы стабилизаторы голени",
         equipment: "Без оборудования"
     },
@@ -141,7 +141,7 @@ const exercisesDatabase = [
         duration: "3 подхода по 12 повторений",
         videoUrl: "11",
         warning: "Не поднимайте плечи вверх во время движения",
-        tips: "Локти держите прижатыми к корпусу. Автор: https://www.youtube.com/watch?v=zhDECKKKXu4",
+        tips: "Локти держите прижатыми к корпусу. Автор: @AlexeyKoltsov_team",
         muscleGroup: "Ротаторная манжета",
         equipment: "Фитнес-резинка"
     },
@@ -154,7 +154,7 @@ const exercisesDatabase = [
         duration: "3 подхода по 12 повторений",
         videoUrl: "12",
         warning: "Колени не должны выходить далеко за носки",
-        tips: "Держите спину прямой. Автор: https://www.youtube.com/@viaction5075",
+        tips: "Держите спину прямой. Автор: @viaction5075",
         muscleGroup: "Квадрицепс, ягодичные",
         equipment: "Без оборудования"
     },
@@ -167,7 +167,7 @@ const exercisesDatabase = [
         duration: "3 подхода по 60 секунд",
         videoUrl: "13",
         warning: "Не прогибайте поясницу",
-        tips: "Держите тело в прямой линии. Автор: https://www.youtube.com/@arseniy_kim",
+        tips: "Держите тело в прямой линии. Автор: @arseniy_kim",
         muscleGroup: "Мышцы кора",
         equipment: "Коврик"
     },
@@ -180,7 +180,7 @@ const exercisesDatabase = [
         duration: "3 подхода по 12 повторений",
         videoUrl: "14",
         warning: "Не выполняйте при нестабильности позвонков",
-        tips: "Контролируйте движение без рывков. Автор: https://www.youtube.com/@grigoriy_lfk",
+        tips: "Контролируйте движение без рывков. Автор: @grigoriy_lfk",
         muscleGroup: "Глубокие сгибатели шеи",
         equipment: "Эластичная лента"
     },
@@ -193,7 +193,7 @@ const exercisesDatabase = [
         duration: "3 подхода по 10 повторений",
         videoUrl: "15",
         warning: "Не выполнять при воспалении суставов кисти",
-        tips: "Держите запястья в нейтральном положении. Автор: https://www.youtube.com/@lanmakoev.smartkarate2699/shorts",
+        tips: "Держите запястья в нейтральном положении. Автор: @lanmakoev.smartkarate2699",
         muscleGroup: "Разгибатели кисти",
         equipment: "Коврик"
     },
@@ -206,7 +206,7 @@ const exercisesDatabase = [
         duration: "3 подхода по 20 повторений",
         videoUrl: "16",
         warning: "Держитесь за опору при нарушении баланса",
-        tips: "Поднимайтесь медленно и опускайтесь контролируемо. Автор: https://www.youtube.com/@SergeySivets",
+        tips: "Поднимайтесь медленно и опускайтесь контролируемо. Автор: @SergeySivets",
         muscleGroup: "Икроножные мышцы",
         equipment: "Без оборудования"
     },
@@ -219,7 +219,7 @@ const exercisesDatabase = [
         duration: "3 подхода по 12 повторений",
         videoUrl: "17",
         warning: "Избегайте боли при подъеме рук",
-        tips: "Контролируйте положение лопаток. Автор: https://www.youtube.com/@%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D1%83%D1%80%D0%BE%D0%BA%D0%B8-%D1%842%D1%80",
+        tips: "Контролируйте положение лопаток. Автор: @Видеоуроки-ф2р",
         muscleGroup: "Дельтовидные мышцы",
         equipment: "Фитнес-резинка"
     },
@@ -232,7 +232,7 @@ const exercisesDatabase = [
         duration: "3 подхода по 12 повторений на каждую ногу",
         videoUrl: "18",
         warning: "Колено не должно заваливаться внутрь",
-        tips: "Сохраняйте равновесие и прямую спину. Автор: https://www.youtube.com/@prokoleno1/shorts",
+        tips: "Сохраняйте равновесие и прямую спину. Автор: @prokoleno1",
         muscleGroup: "Квадрицепс, ягодичные",
         equipment: "Без оборудования"
     }
